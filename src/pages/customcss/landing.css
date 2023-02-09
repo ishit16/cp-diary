@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.landing-page-heading-font{
+    font-family: 'Radio Canada', sans-serif;;
+}
