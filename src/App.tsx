@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginForm />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
       </Routes>
     </Router>
   );
