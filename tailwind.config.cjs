@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "purple-landing-page": "#1a0227",
+        "purple-landing-page": "#16213E",
+        "navbar-dashboard-color": "#0A2647"
       }
     },
   },
