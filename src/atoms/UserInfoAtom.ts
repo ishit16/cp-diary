@@ -1,6 +1,11 @@
 import {atom} from "recoil";
 
-export const UserInformation = atom ({
-    key: "UserInformation",
+export const MaxRating = atom ({
+    key: "MaxRating",
+    default: "",
+})
+
+export const TotalSubmissions = atom ({
+    key: "TotalSubmissions",
     default: "",
 })
