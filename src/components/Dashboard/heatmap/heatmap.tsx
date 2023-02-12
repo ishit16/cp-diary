@@ -1,3 +1,11 @@
+import Select from "react-select";
+import HeatMap from "@uiw/react-heat-map";
+const options = [
+  { value: 2021, label: "2021" },
+  { value: 2022, label: "2022" },
+  { value: 2023, label: "2023" },
+];
+
 export const Heatmap = (props: any) => {
   return (
     <>
@@ -8,7 +16,13 @@ export const Heatmap = (props: any) => {
           </p>
         </div>
         <div>
-          <p className="text-white font-bold text-2xl">Calender</p>
+          <div>
+            <Select
+              options={options}
+              defaultValue={options[options.length - 1]}
+            />
+          </div>
+          <HeatMap />
         </div>
       </div>
     </>
