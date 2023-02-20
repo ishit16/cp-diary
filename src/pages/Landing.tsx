@@ -6,27 +6,20 @@ import titleImage from "../assets/codeforces-diary.svg";
 export const LandingPage = () => {
   return (
     <>
-      <div className="bg-purple-landing-page h-screen">
-        <div className="grid grid-cols-2">
-          <div
-            className="h-screen flex flex-col justify-between background-image"
-            style={{ width: "90vh" }}
-          >
-            <img style={{ width: "90vh" }} src={titleImage}></img>
-            <img style={{ width: "90vh" }} src={image}></img>
-            <img style={{ width: "90vh" }} src={peepsImage}></img>
+      <div className="h-screen background-image w-screen overflow-x-hidden">
+        <div className="flex flex-col justify-between place-content-center">
+          <div className="w-screen">
+            <img src={titleImage} className="w-screen lg:h-1/2"></img>
           </div>
-          <div className="h-screen grid place-items-center">
-            <div className="h-3/4 w-11/12 bg-slate-500 bg-opacity-25 rounded-xl">
-              <div className="text-center mx-auto">
-                <p className="text-white py-16  font-bold text-4xl">
-                  Login Form
-                </p>
-              </div>
-              <div className="w-1/2 h-1/2 mx-auto">
-                <LoginForm />
+          <div>
+            <div className="flex flex-col items-center">
+              <div className="w-3/4 lg:w-1/4 p-10 bg-slate-900 bg-opacity-75 rounded-xl">
+                <LoginForm></LoginForm>
               </div>
             </div>
+          </div>
+          <div className="w-screen">
+            <img src={peepsImage} className="w-screen"></img>
           </div>
         </div>
       </div>

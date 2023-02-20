@@ -13,7 +13,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/" element={<Dashboard />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
         </Routes>
       </Router>
     </RecoilRoot>
