@@ -1,24 +1,40 @@
-import { useEffect, useState } from "react";
-
 import { DashboardNavbar } from "../components/navbar/Navbar";
-import axios, { AxiosResponse } from "axios";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { MaxRating, TotalSubmissions } from "../atoms/UserInfoAtom";
-import { getUserInfo, getUserSubmissions } from "../api/userInfo";
-import { Heatmap } from "../components/Dashboard/heatmap/heatmap";
+import { getUserSubmissions } from "../api/userInfo";
+import { SideBar } from "../components/sidebar/sidebar";
+import Select from "react-select";
 
 export const Dashboard = () => {
   const [userInfo, setUserInfo] = useRecoilState(MaxRating);
   const userSubmissions = useRecoilValue(TotalSubmissions);
-  // const result = getUserInfo();
   const submissions: any = getUserSubmissions();
-
+  const options = [
+    { value: 2021, label: "2021" },
+    { value: 2022, label: "2022" },
+    { value: 2023, label: "2023" },
+  ];
   return (
     <>
-      <div className="bg-purple-landing-page h-screen">
+      <div className="bg-purple-landing-page">
         <DashboardNavbar></DashboardNavbar>
-        <div className="px-4 mt-4">
-          <Heatmap submissions={userSubmissions} />
+        <div className="flex h-screen">
+          <SideBar />
+          <div className="px-4 pt-16 md:pt-20 w-screen">
+            <div className="bg-slate-800 flex h-auto justify-between flex-row py-8 px-4 bg-opacity-50">
+              <div>
+                <p className="text-white font-bold text-2xl">
+                  Total Submissions: {userSubmissions}
+                </p>
+              </div>
+              <div>
+                <Select
+                  options={options}
+                  defaultValue={options[options.length - 1]}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

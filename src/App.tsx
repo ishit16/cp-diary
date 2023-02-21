@@ -14,7 +14,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/" element={<SideBar />}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </Router>

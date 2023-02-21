@@ -1,9 +1,6 @@
 import { useState } from "react";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
-import Chart_fill from "../../assets/Chart_fill.png";
-import Folder from "../../assets/Folder.png";
-import Setting from "../../assets/Setting.png";
 
 export const SideBar = () => {
   const [open, setOpen] = useState(true);
@@ -14,15 +11,15 @@ export const SideBar = () => {
   ];
   return (
     <>
-      <div>
+      <div className="flex z-8">
         <div
           className={`${
-            open ? "w-72" : "w-20"
-          } duration-300 h-screen p-5 pt-8 bg-navbar-dashboard-color relative`}
+            open ? "md:w-72 w-48" : "w-20"
+          } duration-300 h-full p-5 pt-20 bg-slate-900 relative`}
         >
           <img
             src={cursorImage}
-            className={`absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-navbar-dashboard-color ${
+            className={`absolute cursor-pointer rounded-full -right-3 top-20 w-7 border-2 border-navbar-dashboard-color ${
               !open && "rotate-180"
             }`}
             onClick={() => setOpen(!open)}
