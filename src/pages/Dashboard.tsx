@@ -23,7 +23,7 @@ export const Dashboard = () => {
           <div className="px-4 pt-16 md:pt-20 w-screen">
             <div className="bg-slate-800 flex h-auto justify-between flex-row py-8 px-4 bg-opacity-50">
               <div>
-                <p className="text-white font-bold text-2xl">
+                <p className="text-white font-bold  md:text-2xl">
                   Total Submissions: {userSubmissions}
                 </p>
               </div>

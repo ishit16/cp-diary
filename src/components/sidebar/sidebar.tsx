@@ -1,9 +1,12 @@
 import { useState } from "react";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
+import useDevice from "../../hooks/useDevice";
 
 export const SideBar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const deviceSize: any = useDevice();
+  const isPhone: boolean = deviceSize.isPhone;
   const Menus = [
     { title: "Dashboard", src: "Chart_fill", gap: true },
     { title: "Diary", src: "Folder", gap: true },
@@ -17,13 +20,17 @@ export const SideBar = () => {
             open ? "md:w-72 w-48" : "w-20"
           } duration-300 h-full p-5 pt-20 bg-slate-900 relative`}
         >
-          <img
-            src={cursorImage}
-            className={`absolute cursor-pointer rounded-full -right-3 top-20 w-7 border-2 border-navbar-dashboard-color ${
-              !open && "rotate-180"
-            }`}
-            onClick={() => setOpen(!open)}
-          />
+          {!isPhone ? (
+            <img
+              src={cursorImage}
+              className={`absolute cursor-pointer rounded-full -right-3 top-20 w-7 border-2 border-navbar-dashboard-color ${
+                !open && "rotate-180"
+              }`}
+              onClick={() => setOpen(!open)}
+            />
+          ) : (
+            <div />
+          )}
           <div className="flex gap-x-4 items-center">
             <img
               src={logoImage}
