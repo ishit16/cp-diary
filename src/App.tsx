@@ -5,6 +5,7 @@ import { LandingPage } from "./pages/Landing";
 import { LoginForm } from "./components/login/LoginForm";
 import { Dashboard } from "./pages/Dashboard";
 import { RecoilRoot } from "recoil";
+import { SideBar } from "./components/sidebar/sidebar";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,7 +14,8 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/" element={<SideBar />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </Router>
     </RecoilRoot>
