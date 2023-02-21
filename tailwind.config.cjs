@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       colors: {
         "purple-landing-page": "#16213E",
-        "navbar-dashboard-color": "#0A2647"
+        "navbar-dashboard-color": "#0A2647",
+        "lite-white": "rgba(255, 255, 255, 0.17)",
       }
     },
   },
