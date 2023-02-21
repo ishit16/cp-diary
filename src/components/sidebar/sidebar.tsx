@@ -1,16 +1,22 @@
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { getUserInfo } from "../../api/userInfo";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
+import { MaxRating, UserAvatar, UserHandle } from "../../atoms/UserInfoAtom";
 import useDevice from "../../hooks/useDevice";
 
 export const SideBar = () => {
   const [open, setOpen] = useState(false);
+  const avatar: any = getUserInfo();
+  const userAvat = useRecoilValue(UserAvatar);
+  const userHandle = useRecoilValue(UserHandle);
+  const userRating = useRecoilValue(MaxRating);
   const deviceSize: any = useDevice();
   const isPhone: boolean = deviceSize.isPhone;
   const Menus = [
     { title: "Dashboard", src: "Chart_fill", gap: true },
     { title: "Diary", src: "Folder", gap: true },
-    { title: "Settings", src: "Setting", gap: true },
   ];
   return (
     <>
@@ -46,7 +52,10 @@ export const SideBar = () => {
               CP Diary
             </h1>
           </div>
-          <ul className="pt-6">
+          <hr
+            className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
+          ></hr>
+          <ul className="pt-4">
             {Menus.map((menu, index) => (
               <li
                 key={index}
@@ -65,6 +74,35 @@ export const SideBar = () => {
               </li>
             ))}
           </ul>
+          <hr
+            className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
+          ></hr>
+          <img
+            src={userAvat}
+            className={`mx-auto mt-16 ${
+              !open ? "w-12 h-12 rounded-full" : "w-24 h-24 rounded-full"
+            }`}
+          ></img>
+          <div className="flex flex-col items-center">
+            <span
+              className={`font-bold text-white text-xl mx-auto mt-4 ${
+                !open && "hidden"
+              }`}
+            >
+              {userHandle}
+            </span>
+            <span
+              className={`font-bold text-white text-6xl mt-8 ${
+                !open && "hidden"
+              }`}
+            >
+              {userRating}
+            </span>
+            <hr
+              className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
+            ></hr>
+            <span></span>
+          </div>
         </div>
       </div>
     </>

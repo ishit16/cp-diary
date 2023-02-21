@@ -1,14 +1,14 @@
 import { DashboardNavbar } from "../components/navbar/Navbar";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { MaxRating, TotalSubmissions } from "../atoms/UserInfoAtom";
-import { getUserSubmissions } from "../api/userInfo";
+import { MaxRating, TotalSubmissions, UserAvatar } from "../atoms/UserInfoAtom";
+import { getUserInfo, getUserSubmissions } from "../api/userInfo";
 import { SideBar } from "../components/sidebar/sidebar";
 import Select from "react-select";
 
 export const Dashboard = () => {
-  const [userInfo, setUserInfo] = useRecoilState(MaxRating);
-  const userSubmissions = useRecoilValue(TotalSubmissions);
   const submissions: any = getUserSubmissions();
+  const userSubmissions = useRecoilValue(TotalSubmissions);
+
   const options = [
     { value: 2021, label: "2021" },
     { value: 2022, label: "2022" },
