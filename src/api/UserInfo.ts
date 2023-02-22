@@ -1,5 +1,6 @@
 import axios from "axios";
 import {atom, selector} from "recoil";
+import { getQuestionsMap } from "./utils/getQuestionMap";
  
 // @ts-ignore
 export const userHandleState = atom<string | undefined>({
@@ -46,5 +47,18 @@ export const userAvatar = selector({
             `https://codeforces.com/api/user.info?handles=${userHandle}`
         )
         return userAvatar.data.result[0].avatar;
+    }
+})
+
+export const userSubmissions = selector({
+    key: "userSubmissions",
+    get: async({get}) => {
+        const userHandle = get(userHandleState);
+        if(userHandle === undefined) return;
+        const userSubmissionsResponse = await axios.get(
+            `https://codeforces.com/api/user.status?handle=${userHandle}`
+        )
+        getQuestionsMap(userSubmissionsResponse.data)
+        return userSubmissionsResponse.data;
     }
 })

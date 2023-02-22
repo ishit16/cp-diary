@@ -6,11 +6,11 @@ import { SideBar } from "../components/sidebar/sidebar";
 import Select from "react-select";
 import { VictoryPie } from "victory";
 import { QuestionsRatingChart } from "../components/Dashboard/pieCharts/piechart";
+import { userSubmissions } from "../api/UserInfo";
 
 export const Dashboard = () => {
-  // const submissions: any = getQuestionsData();
-  // const userSubmissions = useRecoilValue(TotalSubmissions);
-  // console.log(userSubmissions);
+  const userQuestionMap = useRecoilValue(userSubmissions);
+
   const options = [
     { value: 2021, label: "2021" },
     { value: 2022, label: "2022" },
