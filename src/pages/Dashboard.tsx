@@ -37,7 +37,14 @@ export const Dashboard = () => {
                   />
                 </div>
               </div>
-              <QuestionsRatingChart />
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col items-center">
+                  <QuestionsRatingChart></QuestionsRatingChart>
+                  <h1 className="text-white text-lg md:text-2xl font-bold">
+                    Total AC Submissions
+                  </h1>
+                </div>
+              </div>
             </div>
           </div>
         </div>
