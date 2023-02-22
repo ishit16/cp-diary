@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userHandleState } from "../../api/UserInfoAtom";
 
 export const LoginForm = () => {
+  const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {/* <div className="md:w-8/12 lg:w-5/12 lg:ml-20"> */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-6">
           <input
+            id="email"
             type="text"
             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Email address"
@@ -15,9 +24,21 @@ export const LoginForm = () => {
 
         <div className="mb-6">
           <input
+            id="password"
             type="password"
             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Password"
+          />
+        </div>
+        <div className="mb-6">
+          <input
+            id="cpHandle"
+            type="text"
+            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            placeholder="Codeforces Handle"
+            onChange={(event) => {
+              setUserCPHandle(event.target.value);
+            }}
           />
         </div>
 
@@ -44,7 +65,7 @@ export const LoginForm = () => {
           <p className="text-center font-semibold mx-4 mb-0 text-white">OR</p>
         </div>
 
-        <a
+        {/* <a
           className="px-7 py-3 bg-blue-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
           href="#!"
           role="button"
@@ -62,7 +83,7 @@ export const LoginForm = () => {
             />
           </svg>
           Continue with Facebook
-        </a>
+        </a> */}
       </form>
       {/* </div> */}
     </>

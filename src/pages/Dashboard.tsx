@@ -1,16 +1,16 @@
 import { DashboardNavbar } from "../components/navbar/Navbar";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { MaxRating, TotalSubmissions, UserAvatar } from "../atoms/UserInfoAtom";
-import { getUserInfo, getUserSubmissions } from "../api/userInfo";
+// import { MaxRating, TotalSubmissions, UserAvatar } from "../atoms/UserInfoAtom";
+// import { getUserInfo } from "../api/userInfo";
 import { SideBar } from "../components/sidebar/sidebar";
 import Select from "react-select";
 import { VictoryPie } from "victory";
 import { QuestionsRatingChart } from "../components/Dashboard/pieCharts/piechart";
 
 export const Dashboard = () => {
-  const submissions: any = getUserSubmissions();
-  const userSubmissions = useRecoilValue(TotalSubmissions);
-
+  // const submissions: any = getQuestionsData();
+  // const userSubmissions = useRecoilValue(TotalSubmissions);
+  // console.log(userSubmissions);
   const options = [
     { value: 2021, label: "2021" },
     { value: 2022, label: "2022" },
@@ -27,7 +27,7 @@ export const Dashboard = () => {
               <div className="flex flex-row justify-between">
                 <div>
                   <p className="text-white font-bold  md:text-2xl">
-                    Total Submissions: {userSubmissions}
+                    Total Submissions: 5
                   </p>
                 </div>
                 <div>

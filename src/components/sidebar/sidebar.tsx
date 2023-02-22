@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { getUserInfo } from "../../api/userInfo";
+// import { getUserInfo } from "../../api/userInfo";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
-import { MaxRating, UserAvatar, UserHandle } from "../../atoms/UserInfoAtom";
+import {
+  userAvatar,
+  userHandleState,
+  userMaxRating,
+} from "../../api/UserInfoAtom";
+// import { MaxRating, UserAvatar, UserHandle } from "../../atoms/UserInfoAtom";
 import useDevice from "../../hooks/useDevice";
 
 export const SideBar = () => {
   const [open, setOpen] = useState(false);
-  const avatar: any = getUserInfo();
-  const userAvat = useRecoilValue(UserAvatar);
-  const userHandle = useRecoilValue(UserHandle);
-  const userRating = useRecoilValue(MaxRating);
+  // const avatar: any = getUserInfo();
+  const userAvatarPicture = useRecoilValue(userAvatar);
+  const userHandle = useRecoilValue(userHandleState);
+  const userRating = useRecoilValue(userMaxRating);
   const deviceSize: any = useDevice();
   const isPhone: boolean = deviceSize.isPhone;
 
@@ -80,7 +85,7 @@ export const SideBar = () => {
             className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
           ></hr>
           <img
-            src={userAvat}
+            src={userAvatarPicture}
             className={`mx-auto mt-16 ${
               !open ? "w-12 h-12 rounded-full" : "w-24 h-24 rounded-full"
             }`}
