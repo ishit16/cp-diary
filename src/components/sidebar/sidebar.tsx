@@ -14,10 +14,12 @@ export const SideBar = () => {
   const userRating = useRecoilValue(MaxRating);
   const deviceSize: any = useDevice();
   const isPhone: boolean = deviceSize.isPhone;
+
   const Menus = [
     { title: "Dashboard", src: "Chart_fill", gap: true },
     { title: "Diary", src: "Folder", gap: true },
   ];
+
   return (
     <>
       <div className="flex z-8">

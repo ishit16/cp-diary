@@ -25,10 +25,12 @@ export const getUserSubmissions = async () => {
 
     try {
         const response = await axios.get(
-            "https://codeforces.com/api/user.status?handle=Fefer_Ivan"
+            "https://codeforces.com/api/user.status?handle=ishitgarg1231"
         );
+        console.log(response.data);
         setUserSubmissions(response.data.result.length);
     } catch (error) {
         console.log(error)
     }
 }
+
