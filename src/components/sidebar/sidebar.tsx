@@ -3,11 +3,7 @@ import { useRecoilValue } from "recoil";
 // import { getUserInfo } from "../../api/userInfo";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
-import {
-  userAvatar,
-  userHandleState,
-  userMaxRating,
-} from "../../api/UserInfoAtom";
+import { userAvatar, userHandleState, userMaxRating } from "../../api/UserInfo";
 // import { MaxRating, UserAvatar, UserHandle } from "../../atoms/UserInfoAtom";
 import useDevice from "../../hooks/useDevice";
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { userHandleState } from "../../api/UserInfoAtom";
+import { userHandleState } from "../../api/UserInfo";
 
 export const LoginForm = () => {
   const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
@@ -38,6 +38,7 @@ export const LoginForm = () => {
             placeholder="Codeforces Handle"
             onChange={(event) => {
               setUserCPHandle(event.target.value);
+              localStorage.setItem("handle", event.target.value);
             }}
           />
         </div>
