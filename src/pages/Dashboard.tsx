@@ -7,9 +7,11 @@ import Select from "react-select";
 import { VictoryPie } from "victory";
 import { QuestionsRatingChart } from "../components/Dashboard/pieCharts/piechart";
 import { userSubmissions } from "../api/UserInfo";
+import { ContestStatsCard } from "../components/Dashboard/contestStats/contestStats";
 
 export const Dashboard = () => {
   const userQuestionMap = useRecoilValue(userSubmissions);
+  const totalSubmissions = userQuestionMap.result.length;
 
   const options = [
     { value: 2021, label: "2021" },
@@ -24,24 +26,31 @@ export const Dashboard = () => {
           <SideBar />
           <div className="px-4 pt-16 md:pt-20 w-screen">
             <div className="bg-slate-800 h-auto py-8 px-4 bg-opacity-50 flex flex-col">
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-center">
                 <div>
-                  <p className="text-white font-bold  md:text-2xl">
-                    Total Submissions: 5
+                  <p className="text-white font-bold  md:text-3xl">
+                    Total Submissions: {totalSubmissions}
                   </p>
                 </div>
-                <div>
+                {/* <div>
                   <Select
                     options={options}
                     defaultValue={options[options.length - 1]}
                   />
-                </div>
+                </div> */}
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-col items-center">
                   <QuestionsRatingChart></QuestionsRatingChart>
                   <h1 className="text-white text-lg md:text-2xl font-bold">
                     Total AC Submissions
+                  </h1>
+                </div>
+                <ContestStatsCard />
+                <div className="flex flex-col items-center">
+                  <QuestionsRatingChart></QuestionsRatingChart>
+                  <h1 className="text-white text-lg md:text-2xl font-bold">
+                    Total WA Submissions
                   </h1>
                 </div>
               </div>
