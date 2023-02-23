@@ -33,7 +33,8 @@ export const userMaxRating = selector({
         const userRating = await axios.get(
             `https://codeforces.com/api/user.rating?handle=${userHandle}`
         )
-        return userRating.data.result[userRating.data.result.length-1].newRating;
+        console.log(userRating.data);
+        return userRating.data;
     }
 })
 

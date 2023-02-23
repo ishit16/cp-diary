@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-// import { getUserInfo } from "../../api/userInfo";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
 import { userAvatar, userHandleState, userMaxRating } from "../../api/UserInfo";
-// import { MaxRating, UserAvatar, UserHandle } from "../../atoms/UserInfoAtom";
 import useDevice from "../../hooks/useDevice";
+import { getBestAndWorstRank } from "../../api/utils/contestStatsData";
 
 export const SideBar = () => {
   const [open, setOpen] = useState(false);
   // const avatar: any = getUserInfo();
   const userAvatarPicture = useRecoilValue(userAvatar);
   const userHandle = useRecoilValue(userHandleState);
-  const userRating = useRecoilValue(userMaxRating);
+  const userContestData = useRecoilValue(userMaxRating);
+  const userRating = getBestAndWorstRank(userContestData).currentRating;
   const deviceSize: any = useDevice();
   const isPhone: boolean = deviceSize.isPhone;
 
