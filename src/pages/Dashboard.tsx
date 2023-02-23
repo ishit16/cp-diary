@@ -8,16 +8,30 @@ import { VictoryPie } from "victory";
 import { QuestionsRatingChart } from "../components/Dashboard/pieCharts/piechart";
 import { userSubmissions } from "../api/UserInfo";
 import { ContestStatsCard } from "../components/Dashboard/contestStats/contestStats";
+import { getQuestionsMap } from "../api/utils/getQuestionMap";
+import { getPieData } from "../api/utils/getPieData";
 
 export const Dashboard = () => {
   const userQuestionMap = useRecoilValue(userSubmissions);
   const totalSubmissions = userQuestionMap.result.length;
 
-  const options = [
-    { value: 2021, label: "2021" },
-    { value: 2022, label: "2022" },
-    { value: 2023, label: "2023" },
-  ];
+  const correctSubmissionsMap: Map<string, number> =
+    getQuestionsMap(userQuestionMap).taggedCorrectSubmissionsNumbers;
+  let sumCorrectSubmissions = 0;
+  correctSubmissionsMap.forEach((v) => {
+    sumCorrectSubmissions += v;
+  });
+
+  const wrongSubmissionsMap: Map<string, number> =
+    getQuestionsMap(userQuestionMap).taggedWrongSubmissionNumbers;
+  let sumIncorrectSubmissions = 0;
+  wrongSubmissionsMap.forEach((v) => {
+    sumIncorrectSubmissions += v;
+  });
+
+  const WADATA = getPieData(wrongSubmissionsMap, sumIncorrectSubmissions);
+  const ACData = getPieData(correctSubmissionsMap, sumCorrectSubmissions);
+
   return (
     <>
       <div className="bg-purple-landing-page">
@@ -41,14 +55,18 @@ export const Dashboard = () => {
               </div>
               <div className="flex flex-row items-center justify-between">
                 <div className="flex flex-col items-center">
-                  <QuestionsRatingChart></QuestionsRatingChart>
+                  <QuestionsRatingChart
+                    dataObject={ACData}
+                  ></QuestionsRatingChart>
                   <h1 className="text-white text-lg md:text-2xl font-bold">
                     Total AC Submissions
                   </h1>
                 </div>
                 <ContestStatsCard />
                 <div className="flex flex-col items-center">
-                  <QuestionsRatingChart></QuestionsRatingChart>
+                  <QuestionsRatingChart
+                    dataObject={WADATA}
+                  ></QuestionsRatingChart>
                   <h1 className="text-white text-lg md:text-2xl font-bold">
                     Total WA Submissions
                   </h1>

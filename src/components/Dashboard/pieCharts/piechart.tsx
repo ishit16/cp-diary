@@ -3,47 +3,7 @@ import { VictoryPie, VictoryTooltip } from "victory";
 import { userSubmissions } from "../../../api/UserInfo";
 import { getQuestionsMap } from "../../../api/utils/getQuestionMap";
 
-export const QuestionsRatingChart = () => {
-  const submissions = useRecoilValue(userSubmissions);
-  const correctSubmissionsMap: Map<string, number> =
-    getQuestionsMap(submissions).taggedCorrectSubmissionsNumbers;
-  let sumCorrectSubmissions = 0;
-  correctSubmissionsMap.forEach((v) => {
-    sumCorrectSubmissions += v;
-  });
-  const dataObject = [
-    {
-      x: `Type: A1 ${correctSubmissionsMap.get("A1")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("A1"),
-    },
-    {
-      x: `Type: A
-      ${correctSubmissionsMap.get("A")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("A"),
-    },
-    {
-      x: `Type: B 
-      ${correctSubmissionsMap.get("B")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("B"),
-    },
-    {
-      x: `Type: C 
-      ${correctSubmissionsMap.get("C")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("C"),
-    },
-    {
-      x: `Type: D
-      ${correctSubmissionsMap.get("D")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("D"),
-    },
-    {
-      x: `Type: E
-      ${correctSubmissionsMap.get("E")}/${sumCorrectSubmissions}`,
-      y: correctSubmissionsMap.get("E"),
-    },
-    // @ts-ignore
-  ];
-
+export const QuestionsRatingChart = (props: any) => {
   return (
     <>
       <div style={{ height: "40vh" }}>
@@ -61,7 +21,7 @@ export const QuestionsRatingChart = () => {
             "#43AA8B",
             "#577590",
           ]}
-          data={dataObject}
+          data={props.dataObject}
         ></VictoryPie>
       </div>
     </>
