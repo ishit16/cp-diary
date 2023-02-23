@@ -2,7 +2,7 @@ import { DashboardNavbar } from "../components/navbar/Navbar";
 import { SideBar } from "../components/sidebar/sidebar";
 import { StatsBox } from "../components/Dashboard/statsBox/statsBox";
 import { Suspense } from "react";
-import LoadingBar from "react-top-loading-bar";
+import { Loading } from "react-loading-dot/lib";
 
 export const Dashboard = () => {
   return (
@@ -12,11 +12,9 @@ export const Dashboard = () => {
         <div className="flex h-screen">
           <SideBar />
           <div className="px-4 pt-16 md:pt-20 w-screen">
-            <div className="bg-slate-800 h-auto py-8 px-4 bg-opacity-50 flex flex-col">
-              <Suspense fallback={<LoadingBar color="red" />}>
-                <StatsBox />
-              </Suspense>
-            </div>
+            <Suspense fallback={<Loading />}>
+              <StatsBox />
+            </Suspense>
           </div>
         </div>
       </div>
