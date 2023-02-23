@@ -74,7 +74,7 @@ export const SideBar = () => {
             className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
           ></hr>
           <Suspense fallback={<div>loading...</div>}>
-            <SideBarAsyncData />
+            <SideBarAsyncData open={open} />
           </Suspense>
         </div>
       </div>
