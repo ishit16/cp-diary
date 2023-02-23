@@ -6,6 +6,7 @@ import { LoginForm } from "./components/login/LoginForm";
 import { Dashboard } from "./pages/Dashboard";
 import { RecoilRoot } from "recoil";
 import { SideBar } from "./components/sidebar/sidebar";
+import { Test } from "./pages/test";
 
 function App() {
   const [count, setCount] = useState(0);

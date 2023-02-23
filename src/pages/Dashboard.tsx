@@ -7,11 +7,11 @@ import { Loading } from "react-loading-dot/lib";
 export const Dashboard = () => {
   return (
     <>
-      <div className="bg-purple-landing-page">
+      <div className="bg-purple-landing-page bg-repeat">
         <DashboardNavbar></DashboardNavbar>
-        <div className="flex h-screen">
+        <div className="flex md:h-screen h-max">
           <SideBar />
-          <div className="px-4 pt-16 md:pt-20 w-screen">
+          <div className="px-4 md:pt-20 w-screen">
             <Suspense fallback={<Loading />}>
               <StatsBox />
             </Suspense>
