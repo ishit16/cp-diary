@@ -14,14 +14,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <LandingPage />
-              </Suspense>
-            }
-          ></Route>
+          <Route path="/" element={<LandingPage />}></Route>
           <Route
             path="/dashboard"
             element={
