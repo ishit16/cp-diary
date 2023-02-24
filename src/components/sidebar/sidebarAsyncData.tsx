@@ -6,7 +6,6 @@ import { getBestAndWorstRank } from "../../api/utils/contestStatsData";
 export const SideBarAsyncData = (props: any) => {
   const userAvatarPicture = useRecoilValue(userAvatar);
   const userHandle = useRecoilValue(userHandleState);
-  console.log(userHandle);
   const userContestData = useRecoilValue(userMaxRating);
   const userRating = getBestAndWorstRank(userContestData).currentRating;
   return (
