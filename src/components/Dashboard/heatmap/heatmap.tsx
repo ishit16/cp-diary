@@ -60,7 +60,9 @@ export const Heatmap = () => {
       count: value,
     });
   }
-
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, [year]);
   return (
     <div className="flex-col">
       <div className="flex flex-row justify-between">
