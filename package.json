@@ -17,6 +17,7 @@
     "react-loading-dot": "^1.0.6",
     "react-router-dom": "^6.8.1",
     "react-select": "^5.7.0",
+    "react-tooltip": "^4.2.11",
     "recoil": "^0.7.6",
     "victory": "^36.6.8"
   },
