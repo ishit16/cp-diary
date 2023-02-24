@@ -60,9 +60,7 @@ export const Heatmap = () => {
       count: value,
     });
   }
-  useEffect(() => {
-    ReactTooltip.rebuild();
-  }, [year]);
+
   return (
     <div className="flex-col">
       <div className="flex flex-row justify-between">
@@ -82,13 +80,20 @@ export const Heatmap = () => {
           startDate={Dates.startDate}
           endDate={Dates.endDate}
           values={QuestionYearList}
+          classForValue={(value: any) => {
+            if (!value) {
+              return "color-empty";
+            }
+            const count = Math.min(4, Math.ceil(value.count / 4));
+            return `color-github-${count}`;
+          }}
           tooltipDataAttrs={(value: any) => {
-            if (value && value?.date && value?.count)
+            if (value && value?.date && value?.count) {
               return {
                 "data-tip": `${value.count} submissions
               on ${value.date}`,
               };
-            else {
+            } else {
               return {};
             }
           }}
