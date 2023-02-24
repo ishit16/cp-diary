@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import Select from "react-select";
 import { useRecoilValue } from "recoil";
 import { userSubmissions } from "../../../api/UserInfo";
 import { getDate } from "../../../api/utils/getDate";
+import ReactTooltip from "react-tooltip";
+import { VictoryTooltip } from "victory";
 
 const prepareData = (SubmissionsList: any) => {
   const LastSubmissionYear = getDate(
@@ -50,6 +52,7 @@ export const Heatmap = () => {
   const QuestionMap = prepareData(SubmissionsList).QuestionMap;
   const [year, setYear] = useState(yearList[yearList.length - 1].value);
   const Dates = getYearDate(year);
+
   const QuestionYearList: any = [];
   for (let [x, value] of QuestionMap.entries()) {
     QuestionYearList.push({
@@ -57,9 +60,9 @@ export const Heatmap = () => {
       count: value,
     });
   }
-
-  console.log(QuestionYearList);
-
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, [year]);
   return (
     <div className="flex-col">
       <div className="flex flex-row justify-between">
@@ -79,7 +82,18 @@ export const Heatmap = () => {
           startDate={Dates.startDate}
           endDate={Dates.endDate}
           values={QuestionYearList}
+          tooltipDataAttrs={(value: any) => {
+            if (value && value?.date && value?.count)
+              return {
+                "data-tip": `${value.count} submissions
+              on ${value.date}`,
+              };
+            else {
+              return {};
+            }
+          }}
         />
+        <ReactTooltip />
       </div>
     </div>
   );
