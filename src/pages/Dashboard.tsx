@@ -3,9 +3,7 @@ import { SideBar } from "../components/sidebar/sidebar";
 import { StatsBox } from "../components/Dashboard/statsBox/statsBox";
 import { Suspense } from "react";
 import { Loading } from "react-loading-dot/lib";
-import Select from "react-select";
-import CalendarHeatmap from "react-calendar-heatmap";
-import "react-calendar-heatmap/dist/styles.css";
+import { Heatmap } from "../components/Dashboard/heatmap/heatmap";
 
 export const Dashboard = () => {
   const options = [
@@ -25,33 +23,10 @@ export const Dashboard = () => {
               <Suspense fallback={<Loading />}>
                 <StatsBox />
               </Suspense>
-              <div className=" bg-slate-800 bg-opacity-50 py-4 px-4 my-4">
-                <div className="flex-col">
-                  <div className="flex flex-row justify-between">
-                    <p className="text-white text-2xl font-bold">Heatmap</p>
-                    <div>
-                      <Select
-                        options={options}
-                        // @ts-ignore
-                        defaultValue={options[options.length - 1]}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">
-                      <CalendarHeatmap
-                        startDate={new Date("2016-01-01")}
-                        endDate={new Date("2017-01-01")}
-                        values={[
-                          { date: "2016-01-01", count: 12 },
-                          { date: "2016-01-22", count: 122 },
-                          { date: "2016-01-30", count: 38 },
-                          // ...and so on
-                        ]}
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div className="rounded-md bg-slate-800 bg-opacity-50 py-4 px-4 my-4">
+                <Suspense fallback={<Loading />}>
+                  <Heatmap />
+                </Suspense>
               </div>
             </div>
           </div>
