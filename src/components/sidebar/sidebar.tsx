@@ -16,7 +16,7 @@ export const SideBar = () => {
 
   return (
     <>
-      <div className="flex z-8">
+      <div className="flex z-8 min-h-screen">
         <div
           className={`${
             open ? "md:w-72 w-48" : "w-20"

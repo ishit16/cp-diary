@@ -16,7 +16,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <div className="bg-purple-landing-page bg-repeat flex-col h-full">
+      <div className="bg-purple-landing-page bg-repeat flex-col min-h-screen h-full">
         <DashboardNavbar></DashboardNavbar>
         <div className="flex ">
           <SideBar />
