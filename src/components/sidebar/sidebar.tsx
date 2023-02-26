@@ -1,4 +1,5 @@
 import { Suspense, useState } from "react";
+import { Link } from "react-router-dom";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
 import useDevice from "../../hooks/useDevice";
@@ -10,8 +11,8 @@ export const SideBar = () => {
   const isPhone: boolean = deviceSize.isPhone;
 
   const Menus = [
-    { title: "Dashboard", src: "Chart_fill", gap: true },
-    { title: "Diary", src: "Folder", gap: true },
+    { title: "Dashboard", src: "Chart_fill", gap: true, redir: "/dashboard" },
+    { title: "Diary", src: "Folder", gap: true, redir: "/diary" },
   ];
 
   return (
@@ -53,21 +54,23 @@ export const SideBar = () => {
           ></hr>
           <ul className="pt-4">
             {Menus.map((menu, index) => (
-              <li
-                key={index}
-                className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-lite-white rounded-md ${
-                  menu.gap ? "mt-9" : "mt-2"
-                }`}
-              >
-                <img src={`./src/assets/${menu.src}.png`}></img>
-                <span
-                  className={`${
-                    !open && "hidden"
-                  } origin-left duration-200 text-lg font-bold`}
+              <Link to={menu.redir}>
+                <li
+                  key={index}
+                  className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-lite-white rounded-md ${
+                    menu.gap ? "mt-9" : "mt-2"
+                  }`}
                 >
-                  {menu.title}
-                </span>
-              </li>
+                  <img src={`./src/assets/${menu.src}.png`}></img>
+                  <span
+                    className={`${
+                      !open && "hidden"
+                    } origin-left duration-200 text-lg font-bold`}
+                  >
+                    {menu.title}
+                  </span>
+                </li>
+              </Link>
             ))}
           </ul>
           <hr

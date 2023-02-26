@@ -3,6 +3,7 @@ import image from "../assets/human-coding.png";
 import peepsImage from "../assets/peep-crowd.svg";
 import { LoginForm } from "../components/login/LoginForm";
 import titleImage from "../assets/codeforces-diary.svg";
+import { SignupForm } from "../components/login/SignupForm";
 export const LandingPage = () => {
   return (
     <>
@@ -14,7 +15,7 @@ export const LandingPage = () => {
           <div>
             <div className="flex flex-col items-center">
               <div className="w-3/4 lg:w-1/4 p-10 bg-slate-900 bg-opacity-75 rounded-xl">
-                <LoginForm></LoginForm>
+                <SignupForm></SignupForm>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export const StatsBox = () => {
   const ACData = getPieData(correctSubmissionsMap, sumCorrectSubmissions);
   return (
     <>
-      <div className="bg-slate-800 h-auto py-8 px-4 rounded-md bg-opacity-50 flex flex-col justify-center">
+      <div className=" border-solid border-sky-500 border-2 bg-slate-800 h-auto py-8 px-4 rounded-md bg-opacity-50 flex flex-col justify-center">
         <div className="flex flex-row justify-center">
           <div>
             <p className="text-white font-bold  md:text-3xl">

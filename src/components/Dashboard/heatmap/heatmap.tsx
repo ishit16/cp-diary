@@ -6,7 +6,6 @@ import { useRecoilValue } from "recoil";
 import { userSubmissions } from "../../../api/UserInfo";
 import { getDate } from "../../../api/utils/getDate";
 import ReactTooltip from "react-tooltip";
-import { VictoryTooltip } from "victory";
 
 const prepareData = (SubmissionsList: any) => {
   const LastSubmissionYear = getDate(
