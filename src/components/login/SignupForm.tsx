@@ -1,12 +1,16 @@
 import axios from "../../api/axios";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { useSignState } from "../../api/signState";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/register";
 
 export const SignupForm = () => {
+  const [isSignup, setIsSignup] = useRecoilState(useSignState);
+
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
 
@@ -32,7 +36,7 @@ export const SignupForm = () => {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     console.log("Hii");
     e.preventDefault();
     const v1 = USER_REGEX.test(user);
@@ -115,19 +119,14 @@ export const SignupForm = () => {
           className="inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
           disabled={!validName || !validPwd || !validMatch ? true : false}
         >
-          {/* <Link
-            type="submit"
-            data-mdb-ripple="true"
-            data-mdb-ripple-color="light"
-            to={"/dashboard"}
-          > */}
           Sign Up
-          {/* </Link> */}
         </button>
-
-        <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-          <p className="text-center font-semibold mx-4 mb-0 text-white">OR</p>
-        </div>
+        <button
+          onClick={() => setIsSignup(!isSignup)}
+          className="my-2 inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+        >
+          Login
+        </button>
       </form>
     </>
   );
