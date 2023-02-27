@@ -7,7 +7,6 @@ import { SignupForm } from "../components/login/SignupForm";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useSignState } from "../api/signState";
-
 export const LandingPage = () => {
   const isSignup = useRecoilValue(useSignState);
 

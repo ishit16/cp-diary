@@ -4,10 +4,11 @@ import { useAuthState, useSignState } from "../../api/signState";
 import { userHandleState } from "../../api/UserInfo";
 import axios from "../../api/axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const LOGIN_URL = "/auth";
 
-export const LoginForm = (props: any) => {
+export const LoginForm = () => {
   const [auth, setAuth] = useRecoilState(useAuthState);
   const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
   const [isSignup, setIsSignup] = useRecoilState(useSignState);
@@ -17,7 +18,8 @@ export const LoginForm = (props: any) => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+
+  const successNotify = () => toast.success("Login Successful!");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -36,6 +38,7 @@ export const LoginForm = (props: any) => {
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
+      successNotify();
       navigate("/dashboard");
     } catch (err: any) {
       if (!err?.response) {
@@ -103,6 +106,7 @@ export const LoginForm = (props: any) => {
         <button className="inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full">
           Sign in
         </button>
+
         <button
           onClick={() => {
             setIsSignup(!isSignup);
