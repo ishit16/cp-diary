@@ -1,13 +1,48 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useSignState } from "../../api/signState";
+import { useAuthState, useSignState } from "../../api/signState";
 import { userHandleState } from "../../api/UserInfo";
+import axios from "../../api/axios";
+import { useState } from "react";
+
+const LOGIN_URL = "/auth";
 
 export const LoginForm = (props: any) => {
+  const [auth, setAuth] = useRecoilState(useAuthState);
   const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
   const [isSignup, setIsSignup] = useRecoilState(useSignState);
-  const handleSubmit = (event: any) => {
+
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ user, pwd, roles, accessToken });
+      setUser("");
+      setPwd("");
+    } catch (err: any) {
+      if (!err?.response) {
+        console.log("No server Response");
+      } else if (err.response?.status === 400) {
+        console.log("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        console.log("Unauthorized");
+      } else {
+        console.log("Login Failed");
+      }
+    }
   };
 
   return (
@@ -19,7 +54,11 @@ export const LoginForm = (props: any) => {
             id="email"
             type="text"
             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="Email address"
+            placeholder="Username"
+            autoComplete="off"
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
+            required
           />
         </div>
 
@@ -29,6 +68,9 @@ export const LoginForm = (props: any) => {
             type="password"
             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Password"
+            onChange={(e) => setPwd(e.target.value)}
+            value={pwd}
+            required
           />
         </div>
         <div className="mb-6">
@@ -53,15 +95,9 @@ export const LoginForm = (props: any) => {
           </a>
         </div>
 
-        <Link
-          type="submit"
-          className="inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-          data-mdb-ripple="true"
-          data-mdb-ripple-color="light"
-          to={"/dashboard"}
-        >
+        <button className="inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full">
           Sign in
-        </Link>
+        </button>
         <button
           onClick={() => {
             setIsSignup(!isSignup);

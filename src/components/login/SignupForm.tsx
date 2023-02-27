@@ -56,7 +56,7 @@ export const SignupForm = () => {
         }
       );
       console.log(response?.data);
-      console.log(response?.accessToken);
+      console.log(response?.data?.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
       setUser("");

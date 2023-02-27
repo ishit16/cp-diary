@@ -4,3 +4,8 @@ export const useSignState = atom({
     key: "useSignState",
     default: false
 })
+
+export const useAuthState = atom({
+    key: "useAuthState",
+    default: {}
+})
