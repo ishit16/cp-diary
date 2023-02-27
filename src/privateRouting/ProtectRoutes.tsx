@@ -5,7 +5,8 @@ import { useAuthState } from "../api/signState";
 export const ProtectRoutes = () => {
   const auth = useRecoilValue(useAuthState);
   const location = useLocation();
-  return auth?.user ? (
+  // @ts-ignore
+  return auth?.accessToken ? (
     <Outlet />
   ) : (
     <Navigate to="/" state={{ from: location }} replace />

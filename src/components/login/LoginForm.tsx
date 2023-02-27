@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useAuthState, useSignState } from "../../api/signState";
 import { userHandleState } from "../../api/UserInfo";
@@ -14,6 +14,10 @@ export const LoginForm = (props: any) => {
 
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -32,6 +36,7 @@ export const LoginForm = (props: any) => {
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
+      navigate("/dashboard");
     } catch (err: any) {
       if (!err?.response) {
         console.log("No server Response");
