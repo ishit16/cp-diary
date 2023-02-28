@@ -4,7 +4,13 @@ import { useAuthState, useSignState } from "../../api/signState";
 import { userHandleState } from "../../api/UserInfo";
 import axios from "../../api/axios";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import {
+  loginFailedError,
+  loginSuccessNotify,
+  missingUsernamePwdError,
+  serverResponseError,
+  unauthorizedUserError,
+} from "../toasters/toasts";
 
 const LOGIN_URL = "/auth";
 
@@ -18,8 +24,6 @@ export const LoginForm = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const successNotify = () => toast.success("Login Successful!");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -38,17 +42,17 @@ export const LoginForm = () => {
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
-      successNotify();
+      loginSuccessNotify();
       navigate("/dashboard");
     } catch (err: any) {
       if (!err?.response) {
-        console.log("No server Response");
+        serverResponseError();
       } else if (err.response?.status === 400) {
-        console.log("Missing Username or Password");
+        missingUsernamePwdError();
       } else if (err.response?.status === 401) {
-        console.log("Unauthorized");
+        unauthorizedUserError();
       } else {
-        console.log("Login Failed");
+        loginFailedError();
       }
     }
   };
