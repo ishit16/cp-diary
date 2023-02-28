@@ -12,20 +12,17 @@ export const LandingPage = () => {
 
   return (
     <>
-      <div className="h-screen background-image w-screen overflow-x-hidden">
+      <div className="h-screen background-image">
         <div className="flex flex-col justify-between place-content-center">
-          <div className="w-screen">
-            <img src={titleImage} className="w-screen lg:h-1/2"></img>
-          </div>
-          <div>
-            <div className="flex flex-col items-center">
-              <div className="w-3/4 lg:w-1/4 p-10 bg-slate-900 bg-opacity-75 rounded-xl">
-                {isSignup ? <SignupForm /> : <LoginForm />}
-              </div>
+          <img src={titleImage} className=" top-0 mt-0 h-20"></img>
+
+          <div className="flex flex-col items-center">
+            <div className="w-3/4 lg:w-1/4 p-9 bg-slate-900 bg-opacity-75 rounded-xl">
+              {isSignup ? <SignupForm /> : <LoginForm />}
             </div>
           </div>
-          <div className="w-screen">
-            <img src={peepsImage} className="w-screen"></img>
+          <div className="">
+            <img src={peepsImage} className="w-screen h-24 md:h-48"></img>
           </div>
         </div>
       </div>
