@@ -6,6 +6,7 @@ import { RecoilRoot } from "recoil";
 import { ProtectRoutes } from "./privateRouting/ProtectRoutes";
 import { PersistLogin } from "./api/utils/persistLogin";
 import { Toaster } from "react-hot-toast";
+import { Diary } from "./pages/Diary";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,6 +28,7 @@ function App() {
                   </Suspense>
                 }
               ></Route>
+              <Route path="/diary" element={<Diary />}></Route>
             </Route>
           </Route>
         </Routes>
