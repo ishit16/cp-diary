@@ -19,7 +19,7 @@ export const SearchBar = () => {
         <input
           type="text"
           placeholder="Search"
-          className="w-full border-slate-600	border-2 py-3 pl-12 pr-4 text-gray-500 rounded-md bg-slate-800 focus:bg-slate-800 "
+          className="w-full border-slate-600 border-2 py-3 pl-12 pr-4 text-gray-500 rounded-md bg-slate-800 focus:bg-slate-800 "
         />
       </div>
     </form>

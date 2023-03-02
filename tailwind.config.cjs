@@ -9,6 +9,10 @@ module.exports = {
         "navbar-dashboard-color": "#0A2647",
         "lite-white": "rgba(255, 255, 255, 0.17)",
         "category-heading": "hsl(333deg, 100%, 52%)",
+        "card-top": "#FCFFE7",
+        "card-bottom": "#609EA2",
+        "card-center": "#4D455D",
+        "question-name": "hsl(345deg 100% 47%)",
       },
       fontFamily: {
         "category-heading": ['"Lexend"', "sans-serif"],

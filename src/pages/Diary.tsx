@@ -1,5 +1,6 @@
 import { AddCardButton } from "../components/Diary/AddCardButton";
 import { CategoryHeading } from "../components/Diary/CategoryHeading";
+import { QuestionCard } from "../components/Diary/QuestionCard";
 import { SearchBar } from "../components/Diary/SearchBar";
 import { DashboardNavbar } from "../components/navbar/Navbar";
 import { SideBar } from "../components/sidebar/sidebar";
@@ -20,6 +21,7 @@ export const Diary = () => {
               <CategoryHeading
                 heading={"Dynamic Programming"}
               ></CategoryHeading>
+              <QuestionCard questionName="Petra's Stones" />
             </div>
           </div>
         </div>
