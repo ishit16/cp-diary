@@ -3,8 +3,6 @@ import cardImage from "../../assets/project1.png";
 
 interface QuestionCardProps {
   questionName: string;
-  tagOne: string;
-  tagTwo: string;
 }
 
 export const QuestionCard = (props: QuestionCardProps) => {
