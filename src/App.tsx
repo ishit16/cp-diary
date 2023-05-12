@@ -16,7 +16,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />}></Route>
-
           <Route element={<PersistLogin />}>
             {/* @ts-ignore */}
             <Route element={<ProtectRoutes />}>

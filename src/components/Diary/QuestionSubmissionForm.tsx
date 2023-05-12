@@ -1,7 +1,12 @@
 import { useState } from "react";
-
+import { useAuthState } from "../../api/signState";
+import { useRecoilValue } from "recoil";
+import axios from "../../api/axios";
+import { toast } from "react-hot-toast";
+import { refreshPageNotify } from "../toasters/toasts";
 export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
   const [formData, setFormData] = useState({ name: " ", category: " " });
+  const authInfo = useRecoilValue(useAuthState);
 
   function handleFormChange(event: any) {
     setFormData({
@@ -10,9 +15,21 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
     });
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(formData);
+    // @ts-ignore
+    console.log(authInfo?.accessToken);
+    try {
+      const response = await axios.get("/questions", {
+        // @ts-ignore
+        headers: { Authorization: `Bearer ${authInfo?.accessToken}` },
+        withCredentials: true,
+      });
+      console.log(response?.data);
+    } catch (err) {
+      refreshPageNotify();
+      console.log(err);
+    }
     setOpen(!openForm);
   };
 

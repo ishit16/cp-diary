@@ -11,11 +11,13 @@ import {
   serverResponseError,
   unauthorizedUserError,
 } from "../toasters/toasts";
+import { userNameAtom } from "../../api/userAtom";
 
 const LOGIN_URL = "/auth";
 
 export const LoginForm = () => {
   const [auth, setAuth] = useRecoilState(useAuthState);
+  const [userName, setUserName] = useRecoilState(userNameAtom);
   const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
   const [isSignup, setIsSignup] = useRecoilState(useSignState);
 
@@ -39,8 +41,8 @@ export const LoginForm = () => {
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
+      setAuth({ user, roles, accessToken });
+      setUserName(user);
       setPwd("");
       loginSuccessNotify();
       navigate("/dashboard");
