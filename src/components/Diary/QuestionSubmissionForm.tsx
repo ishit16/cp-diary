@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { useAuthState } from "../../api/signState";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import axios from "../../api/axios";
 import { refreshPageNotify } from "../toasters/toasts";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { problemCardData } from "../../api/problemAtom";
 
 export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
-  const [formData, setFormData] = useState({ name: " ", category: " " });
+  const [cardData, setCardData] = useRecoilState(problemCardData);
+  const [formData, setFormData] = useState({
+    problemName: " ",
+    problemCategory: " ",
+  });
   const authInfo = useRecoilValue(useAuthState);
   const axiosPrivate = useAxiosPrivate();
 
@@ -21,8 +26,9 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
     event.preventDefault();
     // @ts-ignore
     try {
-      const response = await axiosPrivate.get("/questions");
-      console.log(response?.data);
+      const response = await axiosPrivate.post("/questions", formData);
+      //@ts-ignore
+      setCardData([...cardData, response.data]);
     } catch (err) {
       console.log(err);
     }
@@ -41,8 +47,8 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
               <form>
                 <div className="mb-6">
                   <input
-                    name="name"
-                    id="name"
+                    name="problemName"
+                    id="problemName"
                     onChange={handleFormChange}
                     type="text"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -53,9 +59,9 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
                 </div>
                 <div>
                   <select
-                    id="category"
+                    id="problemCategory"
                     onChange={handleFormChange}
-                    name="category"
+                    name="problemCategory"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   >
                     <option value=" " className="text-gray-700">
