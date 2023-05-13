@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { AddCardButton } from "../components/Diary/AddCardButton";
 import { CategoryHeading } from "../components/Diary/CategoryHeading";
 import { QuestionCard } from "../components/Diary/QuestionCard";
-import { QuestionSubmissionForm } from "../components/Diary/QuestionSubmissionForm";
 import { SearchBar } from "../components/Diary/SearchBar";
 import { DashboardNavbar } from "../components/navbar/Navbar";
 import { SideBar } from "../components/sidebar/sidebar";
