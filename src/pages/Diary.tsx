@@ -13,16 +13,16 @@ export const Diary = () => {
   const [cardData, setCardData] = useRecoilState(problemCardData);
 
   const axiosPrivate = useAxiosPrivate();
+  const getCardsData = async () => {
+    try {
+      const response = await axiosPrivate.get("/questions");
+      console.log(response.data);
+      setCardData(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const getCardsData = async () => {
-      try {
-        const response = await axiosPrivate.get("/questions");
-        console.log(response.data);
-        setCardData(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getCardsData();
   }, [setCardData]);
 
@@ -46,6 +46,7 @@ export const Diary = () => {
                   <QuestionCard
                     key={card._id}
                     questionName={card.problemName}
+                    questionID={card._id}
                   ></QuestionCard>
                 ))}
               </div>
