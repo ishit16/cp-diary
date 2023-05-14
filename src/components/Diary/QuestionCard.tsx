@@ -21,7 +21,6 @@ export const QuestionCard = (props: QuestionCardProps) => {
           <button
             onClick={() => {
               setShowModal(true);
-              console.log("Set");
             }}
             className="text-lg  font-category-heading no-underline  text-white bg-question-name  font-medium text-center p-3"
           >

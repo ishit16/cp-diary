@@ -1,8 +1,4 @@
-import { useState } from "react";
-import { useAuthState } from "../../api/signState";
-import { useRecoilState, useRecoilValue } from "recoil";
-import axios from "../../api/axios";
-import { refreshPageNotify } from "../toasters/toasts";
+import { useRecoilState } from "recoil";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { problemCardData } from "../../api/problemAtom";
 
@@ -20,7 +16,6 @@ export const QuestionSpecificsForm = ({
     try {
       const response = await axiosPrivate.delete(`/questions/${questionID}`);
       //@ts-ignore
-      console.log(response.data);
       const updatedCardData = cardData.filter(
         (card) => card._id !== questionID
       );

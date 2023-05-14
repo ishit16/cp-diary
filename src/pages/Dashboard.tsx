@@ -12,7 +12,7 @@ export const Dashboard = () => {
         <DashboardNavbar></DashboardNavbar>
         <div className="flex ">
           <SideBar />
-          <div className="px-4 md:pt-20 w-screen">
+          <div className="px-4 md:pt-20  w-screen">
             <div className="flex-col">
               <Suspense fallback={<Loading />}>
                 <StatsBox />

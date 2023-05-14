@@ -16,7 +16,6 @@ export const Diary = () => {
   const getCardsData = async () => {
     try {
       const response = await axiosPrivate.get("/questions");
-      console.log(response.data);
       setCardData(response.data);
     } catch (err) {
       console.log(err);

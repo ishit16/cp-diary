@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useSignState } from "../../api/signState";
+import { serverResponseError, userNameTaken } from "../toasters/toasts";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -37,7 +38,6 @@ export const SignupForm = () => {
   }, [user, pwd, matchPwd]);
 
   const handleSubmit = async (e: any) => {
-    console.log("Hii");
     e.preventDefault();
     const v1 = USER_REGEX.test(user);
     const v2 = PWD_REGEX.test(pwd);
@@ -46,7 +46,6 @@ export const SignupForm = () => {
       return;
     }
     try {
-      console.log("Ishit");
       const response = await axios.post(
         REGISTER_URL,
         JSON.stringify({ user, pwd }),
@@ -55,9 +54,6 @@ export const SignupForm = () => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
-      console.log(response?.data?.accessToken);
-      console.log(JSON.stringify(response));
       setSuccess(true);
       setUser("");
       setPwd("");
@@ -65,9 +61,11 @@ export const SignupForm = () => {
     } catch (err) {
       //@ts-ignore
       if (!err?.response) {
+        serverResponseError();
         setErrMsg("No Server Response");
         // @ts-ignore
       } else if (err.response?.status === 409) {
+        userNameTaken();
         setErrMsg("Username Taken");
       } else {
         setErrMsg("Registration Failed");

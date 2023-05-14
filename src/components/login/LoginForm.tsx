@@ -38,7 +38,6 @@ export const LoginForm = () => {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
       setAuth({ user, roles, accessToken });
