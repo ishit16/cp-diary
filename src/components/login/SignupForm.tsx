@@ -3,7 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useSignState } from "../../api/signState";
-import { serverResponseError, userNameTaken } from "../toasters/toasts";
+import {
+  invalidPassword,
+  serverResponseError,
+  userNameTaken,
+} from "../toasters/toasts";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -43,6 +47,7 @@ export const SignupForm = () => {
     const v2 = PWD_REGEX.test(pwd);
     if (!v1 || !v2) {
       setErrMsg("Invalid Entry");
+      invalidPassword();
       return;
     }
     try {
