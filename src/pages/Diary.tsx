@@ -46,6 +46,7 @@ export const Diary = () => {
                   <QuestionCard
                     key={card._id}
                     questionName={card.problemName}
+                    questionLink={card.problemLink}
                     questionID={card._id}
                   ></QuestionCard>
                 ))}

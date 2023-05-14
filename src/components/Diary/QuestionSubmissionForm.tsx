@@ -10,7 +10,7 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
   const [cardData, setCardData] = useRecoilState(problemCardData);
   const [formData, setFormData] = useState({
     problemName: " ",
-    problemCategory: " ",
+    problemLink: " ",
   });
   const authInfo = useRecoilValue(useAuthState);
   const axiosPrivate = useAxiosPrivate();
@@ -57,23 +57,17 @@ export const QuestionSubmissionForm = ({ openForm, setOpen }: any) => {
                     required
                   />
                 </div>
-                <div>
-                  <select
-                    id="problemCategory"
+                <div className="mb-6">
+                  <input
+                    name="problemLink"
+                    id="problemLink"
                     onChange={handleFormChange}
-                    name="problemCategory"
+                    type="text"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  >
-                    <option value=" " className="text-gray-700">
-                      Problem Category
-                    </option>
-                    <option value="Dynamic Programming">
-                      Dynamic Programming
-                    </option>
-                    <option value="Trees">Trees</option>
-                    <option value="Graphs">Graphs</option>
-                    <option value="Ad-HOC">Ad-HOC</option>
-                  </select>
+                    placeholder="Problem Link"
+                    autoComplete="off"
+                    required
+                  />
                 </div>
               </form>
             </div>
