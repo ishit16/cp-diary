@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import cursorImage from "../../assets/control.png";
 import logoImage from "../../assets/logo.png";
 import useDevice from "../../hooks/useDevice";
+import chartFill from "../../assets/Chart_fill.png";
+import folder from "../../assets/Folder.png";
 import { SideBarAsyncData } from "./sidebarAsyncData";
 
 export const SideBar = () => {
@@ -11,8 +13,8 @@ export const SideBar = () => {
   const isPhone: boolean = deviceSize.isPhone;
 
   const Menus = [
-    { title: "Dashboard", src: "Chart_fill", gap: true, redir: "/dashboard" },
-    { title: "Diary", src: "Folder", gap: true, redir: "/diary" },
+    { title: "Dashboard", src: chartFill, gap: true, redir: "/dashboard" },
+    { title: "Diary", src: folder, gap: true, redir: "/diary" },
   ];
 
   return (
@@ -61,7 +63,7 @@ export const SideBar = () => {
                     menu.gap ? "mt-9" : "mt-2"
                   }`}
                 >
-                  <img src={`./src/assets/${menu.src}.png`}></img>
+                  <img src={`${menu.src}`}></img>
                   <span
                     className={`${
                       !open && "hidden"
