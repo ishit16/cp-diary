@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useSignState } from "../../api/signState";
 import {
+  accountCreated,
   invalidPassword,
   serverResponseError,
   userNameTaken,
@@ -60,6 +61,7 @@ export const SignupForm = () => {
         }
       );
       setSuccess(true);
+      accountCreated();
       setUser("");
       setPwd("");
       setMatchPwd("");

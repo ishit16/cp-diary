@@ -8,3 +8,4 @@ export const invalidPassword = () => toast.error("Invalid Password Entry")
 export const missingUsernamePwdError = () => toast.error("Missing Username or Password");
 export const unauthorizedUserError = () => toast.error("Account doesn't exist");
 export const loginFailedError = () => toast.error("Login failed!")
+export const accountCreated = () => toast.success("Account Created Successfully")
