@@ -17,6 +17,7 @@ export const QuestionSpecificsForm = ({
       const response = await axiosPrivate.delete(`/questions/${questionID}`);
       //@ts-ignore
       const updatedCardData = cardData.filter(
+        //@ts-ignore
         (card) => card._id !== questionID
       );
       setCardData(updatedCardData);

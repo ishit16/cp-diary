@@ -43,9 +43,13 @@ export const Diary = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {cardData.map((card) => (
                   <QuestionCard
+                    //@ts-ignore
                     key={card._id}
+                    //@ts-ignore
                     questionName={card.problemName}
+                    //@ts-ignore
                     questionLink={card.problemLink}
+                    //@ts-ignore
                     questionID={card._id}
                   ></QuestionCard>
                 ))}
