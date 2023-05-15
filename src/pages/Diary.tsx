@@ -27,12 +27,12 @@ export const Diary = () => {
 
   const groupedCards = cardData.reduce((acc, card) => {
     //@ts-ignore
-    if (acc[card.category]) {
+    if (acc[card.problemCategory]) {
       //@ts-ignore
-      acc[card.category].push(card);
+      acc[card.problemCategory].push(card);
     } else {
       //@ts-ignore
-      acc[card.category] = [card];
+      acc[card.problemCategory] = [card];
     }
     return acc;
   }, {});
