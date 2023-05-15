@@ -25,6 +25,18 @@ export const Diary = () => {
     getCardsData();
   }, [setCardData]);
 
+  const groupedCards = cardData.reduce((acc, card) => {
+    //@ts-ignore
+    if (acc[card.category]) {
+      //@ts-ignore
+      acc[card.category].push(card);
+    } else {
+      //@ts-ignore
+      acc[card.category] = [card];
+    }
+    return acc;
+  }, {});
+
   return (
     <>
       <div className="bg-purple-landing-page bg-repeat flex-col min-h-screen h-full">
@@ -37,23 +49,26 @@ export const Diary = () => {
               <AddCardButton />
             </div>
             <div>
-              <div className="py-8">
-                <CategoryHeading heading={"Saved Questions"}></CategoryHeading>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {cardData.map((card) => (
-                  <QuestionCard
-                    //@ts-ignore
-                    key={card._id}
-                    //@ts-ignore
-                    questionName={card.problemName}
-                    //@ts-ignore
-                    questionLink={card.problemLink}
-                    //@ts-ignore
-                    questionID={card._id}
-                  ></QuestionCard>
-                ))}
-              </div>
+              {Object.entries(groupedCards).map(([category, cards]) => (
+                <div key={category}>
+                  <div className="py-8">
+                    <CategoryHeading heading={category} />
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {
+                      //@ts-ignore
+                      cards.map((card) => (
+                        <QuestionCard
+                          key={card._id}
+                          questionName={card.problemName}
+                          questionLink={card.problemLink}
+                          questionID={card._id}
+                        />
+                      ))
+                    }
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
