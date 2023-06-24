@@ -12,6 +12,7 @@ import {
   unauthorizedUserError,
 } from "../toasters/toasts";
 import { userNameAtom } from "../../api/userAtom";
+import toast from "react-hot-toast";
 
 const LOGIN_URL = "/auth";
 
@@ -30,31 +31,35 @@ export const LoginForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
+      await toast.promise(
+        axios.post(LOGIN_URL, JSON.stringify({ user, pwd }), {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
+        }),
+        {
+          loading: "Loading",
+          success: (response) => {
+            const data = response.data.accessToken;
+            console.log(data);
+            setAuth({ user, data });
+            setUserName(user);
+            setPwd("");
+            navigate("/dashboard");
+            return "Logged In";
+          },
+          error: (err) => {
+            if (err?.response?.status === 401) {
+              return "Invalid Credentials";
+            } else if (err?.response?.status === 400) {
+              return "Missing Credentials";
+            } else {
+              return "Server Error";
+            }
+          },
         }
       );
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, roles, accessToken });
-      setUserName(user);
-      setPwd("");
-      loginSuccessNotify();
-      navigate("/dashboard");
     } catch (err: any) {
-      if (!err?.response) {
-        serverResponseError();
-      } else if (err.response?.status === 400) {
-        missingUsernamePwdError();
-      } else if (err.response?.status === 401) {
-        unauthorizedUserError();
-      } else {
-        loginFailedError();
-      }
+      console.log(err);
     }
   };
 
