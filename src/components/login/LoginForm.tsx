@@ -40,7 +40,7 @@ export const LoginForm = () => {
           loading: "Loading",
           success: (response) => {
             const data = response.data.accessToken;
-            console.log(data);
+
             setAuth({ user, data });
             setUserName(user);
             setPwd("");

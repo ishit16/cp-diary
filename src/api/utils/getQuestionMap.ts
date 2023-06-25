@@ -6,7 +6,7 @@ export const getQuestionsMap = (submissions: any) => {
     let wrongSubmissionsMap = new Map<string, string>;
     let taggedCorrectSubmissionsNumbers = new Map<string, number>;
     let taggedWrongSubmissionNumbers = new Map<string, number>;
-    // console.log(submissions.result[0])
+    
     for(let i = 0; i < submissions.result.length; i++){
         if(acSubmissionsMap.get(submissions.result[i].id) || wrongSubmissionsMap.get(submissions.result[i].id)) continue;
         else {
