@@ -16,6 +16,9 @@ module.exports = {
       },
       fontFamily: {
         "category-heading": ['"Lexend"', "sans-serif"],
+        caveat: "Caveat",
+        roboto: "Roboto",
+        ubuntu: "Ubuntu",
       },
     },
   },
