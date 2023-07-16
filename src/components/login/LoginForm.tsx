@@ -4,13 +4,6 @@ import { useAuthState, useSignState } from "../../api/signState";
 import { userHandleState } from "../../api/UserInfo";
 import axios from "../../api/axios";
 import { useState } from "react";
-import {
-  loginFailedError,
-  loginSuccessNotify,
-  missingUsernamePwdError,
-  serverResponseError,
-  unauthorizedUserError,
-} from "../toasters/toasts";
 import { userNameAtom } from "../../api/userAtom";
 import toast from "react-hot-toast";
 

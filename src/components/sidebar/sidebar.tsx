@@ -15,6 +15,7 @@ export const SideBar = () => {
   const Menus = [
     { title: "Dashboard", src: chartFill, gap: true, redir: "/dashboard" },
     { title: "Diary", src: folder, gap: true, redir: "/diary" },
+    { title: "Friends", src: folder, gap: true, redir: "/diary" },
   ];
 
   return (
