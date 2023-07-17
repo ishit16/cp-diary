@@ -1,3 +1,5 @@
+import { cva } from "class-variance-authority";
+
 export const SearchBar = () => {
   return (
     <form className="w-full">
@@ -19,9 +21,22 @@ export const SearchBar = () => {
         <input
           type="text"
           placeholder="Search"
-          className="w-full border-slate-600 border-2 py-3 pl-12 pr-4 text-gray-500 rounded-md bg-slate-800 focus:bg-slate-800 "
+          className={SearchBarInputStyles()}
         />
       </div>
     </form>
   );
 };
+
+const SearchBarInputStyles = cva([
+  "w-full",
+  "border-slate-600",
+  "border-2",
+  "py-3",
+  "pl-12",
+  "pr-4",
+  "text-gray-500",
+  "rounded-md",
+  "bg-slate-800",
+  "focus:bg-slate-800",
+]);

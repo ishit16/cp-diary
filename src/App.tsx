@@ -7,6 +7,7 @@ import { ProtectRoutes } from "./privateRouting/ProtectRoutes";
 import { PersistLogin } from "./api/utils/persistLogin";
 import { Toaster } from "react-hot-toast";
 import { Diary } from "./pages/Diary";
+import { FriendsPage } from "./pages/Friends";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,6 +29,7 @@ function App() {
                 }
               ></Route>
               <Route path="/diary" element={<Diary />}></Route>
+              <Route path="/friends" element={<FriendsPage />}></Route>
             </Route>
           </Route>
         </Routes>
