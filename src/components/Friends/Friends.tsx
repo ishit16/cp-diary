@@ -1,6 +1,7 @@
 import { FriendCard } from "./FriendCard";
 import { SearchBar } from "./SearchBar";
 import chat from "../../assets/chat.png";
+import { SearchBarLists } from "./SearchLists";
 export const FriendsContainer = () => {
   return (
     <>
@@ -11,8 +12,10 @@ export const FriendsContainer = () => {
               Friends List
             </span>
           </div>
-          <div className="w-1/2">
-            <SearchBar />
+          <div className="flex flex-col w-1/2">
+            <div>
+              <SearchBar />
+            </div>
           </div>
         </div>
         <div className="w-full mx-auto rounded-md h-2/3 bg-slate-600 bg-opacity-50 overflow-y-auto">
