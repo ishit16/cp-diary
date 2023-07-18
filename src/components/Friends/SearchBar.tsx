@@ -1,17 +1,49 @@
 import { cva } from "class-variance-authority";
-import { SearchBarLists } from "./SearchLists";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { SearchBarResult } from "./SearchBarResult";
+import { debounce } from "lodash";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+
+interface User {
+  id: number;
+  name: string;
+  isFriend: boolean;
+}
 
 export const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [users, setUsers] = useState<Array<User>>([]);
+  const axiosPrivate = useAxiosPrivate();
 
   const handleChange = (e: any) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
 
+  const handleCloseSearch = () => {
+    setSearchInput("");
+  };
+
   useEffect(() => {
-    if (searchInput !== "") console.log(searchInput);
+    const fetchResults = async () => {
+      try {
+        const search = { searchInput };
+        const response = await axiosPrivate.post("/users", search);
+        const data = response.data;
+        if (data.length > 0) {
+          const formattedData = data.map((item: any) => ({
+            id: item._id,
+            name: item.username,
+            isFriend: false,
+          }));
+          setUsers(formattedData);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const debouncedFetch = debounce(fetchResults, 3000);
+    debouncedFetch();
   }, [searchInput]);
 
   return (
@@ -32,6 +64,21 @@ export const SearchBar = () => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 right-3 cursor-pointer"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            onClick={handleCloseSearch}
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
           <input
             type="text"
             placeholder="Search"
@@ -40,7 +87,15 @@ export const SearchBar = () => {
           />
         </div>
       </form>
-      <SearchBarLists />
+      <div className="w-[41.5%] rounded-md mt-2 bg-slate-800 z-100 fixed max-h-40 overflow-y-auto">
+        {users.map((user) => (
+          <SearchBarResult
+            key={user?.id}
+            name={user?.name}
+            isFriend={user?.isFriend}
+          />
+        ))}
+      </div>
     </div>
   );
 };
