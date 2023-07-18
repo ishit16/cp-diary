@@ -8,7 +8,7 @@ export const FriendsContainer = () => {
       <div className="flex-col w-full px-4 md:px-20">
         <div className="flex flex-row mx-auto mt-20 gap-x-12 py-4">
           <div className="w-1/2 py-2">
-            <span className="text-gray-300 text-4xl font-category-heading">
+            <span className="text-gray-300 text-4xl font-bold font-category-heading">
               Friends List
             </span>
           </div>
