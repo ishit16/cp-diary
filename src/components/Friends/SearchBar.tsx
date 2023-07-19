@@ -22,6 +22,7 @@ export const SearchBar = () => {
 
   const handleCloseSearch = () => {
     setSearchInput("");
+    setUsers([]);
   };
 
   useEffect(() => {
@@ -29,21 +30,29 @@ export const SearchBar = () => {
       try {
         const search = { searchInput };
         const response = await axiosPrivate.post("/users", search);
-        const data = response.data;
-        if (data.length > 0) {
-          const formattedData = data.map((item: any) => ({
+
+        if (response.status === 204) {
+          console.log(users.length);
+          setUsers([]);
+        } else {
+          const data = response.data;
+          const filteredData = data.map((item: any) => ({
             id: item._id,
             name: item.username,
             isFriend: false,
           }));
-          setUsers(formattedData);
+          setUsers(filteredData);
         }
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     };
-    const debouncedFetch = debounce(fetchResults, 3000);
-    debouncedFetch();
+    if (searchInput != "") {
+      const debouncedFetch = debounce(fetchResults, 2000);
+      debouncedFetch();
+    } else {
+      setUsers([]);
+    }
   }, [searchInput]);
 
   return (
