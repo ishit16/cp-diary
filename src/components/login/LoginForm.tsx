@@ -33,7 +33,6 @@ export const LoginForm = () => {
           loading: "Loading",
           success: (response) => {
             const data = response.data.accessToken;
-
             setAuth({ user, data });
             setUserName(user);
             setPwd("");
