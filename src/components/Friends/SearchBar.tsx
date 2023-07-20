@@ -5,7 +5,7 @@ import { debounce } from "lodash";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 interface User {
-  id: number;
+  id: string;
   name: string;
   isFriend: boolean;
 }
@@ -100,6 +100,7 @@ export const SearchBar = () => {
         {users.map((user) => (
           <SearchBarResult
             key={user?.id}
+            id={user?.id}
             name={user?.name}
             isFriend={user?.isFriend}
           />
