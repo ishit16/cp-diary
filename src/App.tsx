@@ -8,6 +8,7 @@ import { PersistLogin } from "./api/utils/persistLogin";
 import { Toaster } from "react-hot-toast";
 import { Diary } from "./pages/Diary";
 import { FriendsPage } from "./pages/Friends";
+import { PendingRequests } from "./pages/PendingRequests";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,6 +31,7 @@ function App() {
               ></Route>
               <Route path="/diary" element={<Diary />}></Route>
               <Route path="/friends" element={<FriendsPage />}></Route>
+              <Route path="/requests" element={<PendingRequests />}></Route>
             </Route>
           </Route>
         </Routes>

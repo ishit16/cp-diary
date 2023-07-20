@@ -16,6 +16,7 @@ export const SideBar = () => {
     { title: "Dashboard", src: chartFill, gap: true, redir: "/dashboard" },
     { title: "Diary", src: folder, gap: true, redir: "/diary" },
     { title: "Friends", src: folder, gap: true, redir: "/friends" },
+    { title: "Pending Requests", src: folder, gap: true, redir: "/requests" },
   ];
 
   return (
