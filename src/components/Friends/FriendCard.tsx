@@ -11,7 +11,7 @@ export const FriendCard = ({ name, image }: FriendCardProps) => {
           <div className="w-12 h-12 bg-red-400 rounded-full"></div>
           <div className="w-2/3">
             <span className="text-gray-800 font-bold font-roboto text-xl break-words">
-              Ishit Garg
+              {name}
             </span>
           </div>
         </div>

@@ -24,8 +24,19 @@ export const FriendsContainer = () => {
         const response = await axiosPrivate.get("/friends/allFriends");
         console.log(response.data);
         console.log(auth);
-        if (response.data.message == "You have no friends yet.") {
+        if (response.data.message == "You have no friends yet") {
           setFriends([]);
+        } else {
+          const friendsList = response.data.friendsUsernames; // Assuming the API response has a field named "pendingRequests" containing the array of usernames
+
+          const updatedFriends: Friend[] = friendsList.map(
+            (username: string) => ({
+              name: username,
+              image: "ishit",
+            })
+          );
+
+          setFriends(updatedFriends);
         }
       } catch (err) {
         console.log(err);
