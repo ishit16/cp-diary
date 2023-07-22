@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 import { useRecoilValue } from "recoil";
 import { useAuthState } from "../../api/signState";
+import toast from "react-hot-toast";
 
 interface Friend {
   id: string;
@@ -45,6 +46,24 @@ export const FriendsContainer = () => {
     getFriends();
   }, []);
 
+  const handleDeleteFriend = async (name: String) => {
+    await toast.promise(axiosPrivate.post(`/friends/deleteFriend/${name}`), {
+      loading: "Deleting Friend",
+      error: (err) => {
+        if (err.status === 404) {
+          return "Invalid Friend";
+        } else {
+          return "Server Error";
+        }
+      },
+      success: (response) => {
+        return "Deleted Successfully";
+      },
+    });
+    const updatedFriends = friends.filter((friend) => friend.name !== name);
+    setFriends(updatedFriends);
+  };
+
   return (
     <>
       <div className="flex-col w-full px-4 md:px-20">
@@ -74,6 +93,7 @@ export const FriendsContainer = () => {
                   key={friend.name}
                   name={friend.name}
                   image={friend.image}
+                  onDeleteFriend={() => handleDeleteFriend(friend.name)}
                 />
               ))}
             </div>

@@ -5,33 +5,21 @@ import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 interface FriendCardProps {
   name: string;
   image: string;
+  onDeleteFriend: () => void;
 }
 
-export const FriendCard = ({ name, image }: FriendCardProps) => {
+export const FriendCard = ({
+  name,
+  image,
+  onDeleteFriend,
+}: FriendCardProps) => {
   const [message, setMessage] = useState(false);
-  const axiosPrivate = useAxiosPrivate();
 
   const handleMouseEnter = () => {
     setMessage(true);
   };
   const handleMouseLeave = () => {
     setMessage(false);
-  };
-
-  const handleDeleteFriend = async () => {
-    await toast.promise(axiosPrivate.post(`/friends/deleteFriend/${name}`), {
-      loading: "Deleting Friend",
-      error: (err) => {
-        if (err.status === 404) {
-          return "Invalid Friend";
-        } else {
-          return "Server Error";
-        }
-      },
-      success: (response) => {
-        return "Deleted Successfully";
-      },
-    });
   };
 
   return (
@@ -58,7 +46,7 @@ export const FriendCard = ({ name, image }: FriendCardProps) => {
               Chat
             </button>
             <button
-              onClick={handleDeleteFriend}
+              onClick={onDeleteFriend}
               className="px-4 py-2 ml-2 bg-red-500 text-white rounded"
             >
               Delete
