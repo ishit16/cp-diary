@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 interface RequestCardProps {
@@ -10,10 +11,17 @@ export const RequestCard = ({ name, image }: RequestCardProps) => {
 
   const handleConfirm = async () => {
     try {
-      const response = await axiosPrivate.post(
-        `/friends/acceptRequest/${name}`
-      );
-      console.log(response.data);
+      await toast.promise(axiosPrivate.post(`/friends/acceptRequest/${name}`), {
+        loading: "Accepting Request",
+        error: (err) => {
+          if (err.status === 400) {
+            return "Invalid Request";
+          } else {
+            return "Failed to Accept Request";
+          }
+        },
+        success: "Accepted Request",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -21,10 +29,19 @@ export const RequestCard = ({ name, image }: RequestCardProps) => {
 
   const handleDelete = async () => {
     try {
-      const response = await axiosPrivate.post(
-        `/friends/deleteRequest/${name}`
-      );
-      console.log(response.data);
+      await toast.promise(axiosPrivate.post(`/friends/deleteRequest/${name}`), {
+        loading: "Deleting Request",
+        error: (err) => {
+          if (err.status === 404) {
+            return "Invalid Request";
+          } else {
+            return "Internal Server Error";
+          }
+        },
+        success: (response) => {
+          return "Request Deleted Successfully";
+        },
+      });
     } catch (err) {
       console.log(err);
     }
