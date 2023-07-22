@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 interface SearchBarResultProps {
@@ -15,8 +16,19 @@ export const SearchBarResult = ({
   const sendFriendRequest = async () => {
     try {
       console.log();
-      const response = await axiosPrivate.post(`/friends/sendRequest/${name}`);
-      console.log(response.data);
+      await toast.promise(axiosPrivate.post(`/friends/sendRequest/${name}`), {
+        loading: "Sending Friend Request",
+        success: (response) => {
+          if (response.status === 204) {
+            return "Friend Request Already Sent!";
+          } else if (response.status === 208) {
+            return "Friends Already";
+          } else {
+            return "Friend Request Sent Successfully";
+          }
+        },
+        error: "Internal Server Error",
+      });
     } catch (err) {
       console.log(err);
     }
