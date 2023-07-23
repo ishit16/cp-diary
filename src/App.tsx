@@ -1,12 +1,14 @@
 import { Suspense, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { LandingPage } from "./pages/Landing";
 import { Dashboard } from "./pages/Dashboard";
 import { RecoilRoot } from "recoil";
 import { ProtectRoutes } from "./privateRouting/ProtectRoutes";
 import { PersistLogin } from "./api/utils/persistLogin";
 import { Toaster } from "react-hot-toast";
 import { Diary } from "./pages/Diary";
+import { FriendsPage } from "./pages/Friends";
+import { PendingRequests } from "./pages/PendingRequests";
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,7 +17,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/" element={<LoginPage />}></Route>
           <Route element={<PersistLogin />}>
             {/* @ts-ignore */}
             <Route element={<ProtectRoutes />}>
@@ -28,6 +30,8 @@ function App() {
                 }
               ></Route>
               <Route path="/diary" element={<Diary />}></Route>
+              <Route path="/friends" element={<FriendsPage />}></Route>
+              <Route path="/requests" element={<PendingRequests />}></Route>
             </Route>
           </Route>
         </Routes>

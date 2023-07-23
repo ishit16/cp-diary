@@ -5,6 +5,7 @@ import logoImage from "../../assets/logo.png";
 import useDevice from "../../hooks/useDevice";
 import chartFill from "../../assets/Chart_fill.png";
 import folder from "../../assets/Folder.png";
+import friends from "../../assets/friends.png";
 import { SideBarAsyncData } from "./sidebarAsyncData";
 
 export const SideBar = () => {
@@ -15,6 +16,13 @@ export const SideBar = () => {
   const Menus = [
     { title: "Dashboard", src: chartFill, gap: true, redir: "/dashboard" },
     { title: "Diary", src: folder, gap: true, redir: "/diary" },
+    { title: "Friends", src: friends, gap: true, redir: "/friends" },
+    {
+      title: "Pending Requests",
+      src: friends,
+      gap: true,
+      redir: "/requests",
+    },
   ];
 
   return (
@@ -36,29 +44,10 @@ export const SideBar = () => {
           ) : (
             <div />
           )}
-          <div className="flex gap-x-4 items-center">
-            <img
-              src={logoImage}
-              className={`cursor-pointer duration-500 ${
-                open && "rotate-[360deg]"
-              }`}
-            />
-            <h1
-              className={`text-white origin-left font-medium text-xl duration-300 ${
-                !open && "scale-0"
-              }`}
-            >
-              CP Diary
-            </h1>
-          </div>
-          <hr
-            className={`w-full mt-4 border-gray-800 ${!open && "hidden"}`}
-          ></hr>
           <ul className="pt-4">
             {Menus.map((menu, index) => (
-              <Link to={menu.redir}>
+              <Link key={menu.title} to={menu.redir}>
                 <li
-                  key={index}
                   className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-lite-white rounded-md ${
                     menu.gap ? "mt-9" : "mt-2"
                   }`}

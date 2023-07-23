@@ -19,6 +19,7 @@ module.exports = {
         caveat: "Caveat",
         roboto: "Roboto",
         ubuntu: "Ubuntu",
+        courierPrime: "Courier Prime",
       },
     },
   },

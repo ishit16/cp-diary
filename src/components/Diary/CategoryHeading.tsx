@@ -1,3 +1,5 @@
+import { cva } from "class-variance-authority";
+
 interface CategoryHeadingProps {
   heading: string;
 }
@@ -9,3 +11,10 @@ export const CategoryHeading = (props: CategoryHeadingProps) => {
     </div>
   );
 };
+
+const CategoryHeadingStyles = cva([
+  "text-3xl",
+  "font-bold",
+  "text-category-heading",
+  "font-category-heading",
+]);

@@ -1,11 +1,10 @@
 import axios from "../../api/axios";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { useSignState } from "../../api/signState";
 import {
-  accountCreated,
   invalidPassword,
+  accountCreated,
   serverResponseError,
   userNameTaken,
 } from "../toasters/toasts";
@@ -84,54 +83,42 @@ export const SignupForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="mb-6">
+        <div className="flex flex-col gap-y-4">
           <input
             id="username"
             type="text"
-            autoComplete="off"
+            className="form-control w-3/4 px-4 py-4 text-slate-50 font-roboto font-semibold bg-slate-800 shadow-2xl rounded-md focus:text-gray-50 focus:outline-none"
+            placeholder="Username"
             onChange={(e) => setUser(e.target.value)}
             value={user}
             required
-            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="Username"
           />
-        </div>
-
-        <div className="mb-6">
           <input
             id="password"
             type="password"
+            className="form-control w-3/4 px-4 py-4 text-slate-50 font-roboto font-semibold bg-slate-800 shadow-2xl rounded-lg focus:text-gray-50 focus:outline-none"
+            placeholder="Password"
             onChange={(e) => setPwd(e.target.value)}
             value={pwd}
             required
-            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="Password"
           />
-        </div>
-
-        <div className="mb-6">
           <input
-            id="confirm_pwd"
             type="password"
+            className="form-control w-3/4 px-4 py-4 text-slate-50 font-roboto font-semibold bg-slate-800 shadow-2xl rounded-lg focus:text-gray-50 focus:outline-none"
+            placeholder="Confirm Password"
             onChange={(e) => setMatchPwd(e.target.value)}
             value={matchPwd}
             required
-            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="Confirm Password"
           />
         </div>
-        <button
-          className="inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-          disabled={!validName || !validMatch ? true : false}
-        >
-          Sign Up
-        </button>
-        <button
-          onClick={() => setIsSignup(!isSignup)}
-          className="my-2 inline-block text-center px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-        >
-          Login
-        </button>
+        <div className="flex flex-row gap-x-4 items-center">
+          <button
+            disabled={!validName || !validMatch ? true : false}
+            className="bg-[#EF087A] w-fit font-roboto md:text-lg px-8 py-2 mt-8 text-white font-bold rounded-xl"
+          >
+            Create Account
+          </button>
+        </div>
       </form>
     </>
   );

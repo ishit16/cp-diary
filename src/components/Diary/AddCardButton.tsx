@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { QuestionSubmissionForm } from "./QuestionSubmissionForm";
+import { cva } from "class-variance-authority";
 
 export const AddCardButton = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="text-white px-4 w-auto h-12 bg-purple-800 rounded-full hover:bg-purple-900 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-      >
+      <button onClick={() => setShowModal(true)} className={CardButtonStyles()}>
         <svg
           viewBox="0 0 20 20"
           enableBackground="new 0 0 20 20"
@@ -31,3 +29,20 @@ export const AddCardButton = () => {
     </>
   );
 };
+
+const CardButtonStyles = cva([
+  "text-white",
+  "px-4",
+  "w-auto",
+  "h-12",
+  "bg-purple-800",
+  "rounded-full",
+  "hover:bg-purple-900",
+  "active:shadow-lg",
+  "mouse",
+  "shadow",
+  "transition",
+  "ease-in",
+  "duration-200",
+  "focus:outline-none",
+]);
