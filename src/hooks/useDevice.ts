@@ -15,8 +15,6 @@ const useDevice = () => {
   }, []);
 
   return {
-    height,
-    width,
     isMiniPhone: width < 576,
     isPhone: width < 992,
     isTablet: width < 1200 && width >= 992,
