@@ -10,51 +10,6 @@ import toast from "react-hot-toast";
 const LOGIN_URL = "/auth";
 
 export const LoginForm = () => {
-  const [auth, setAuth] = useRecoilState(useAuthState);
-  const [userName, setUserName] = useRecoilState(userNameAtom);
-  const [userCPHandle, setUserCPHandle] = useRecoilState(userHandleState);
-  const [isSignup, setIsSignup] = useRecoilState(useSignState);
-
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    try {
-      await toast.promise(
-        axios.post(LOGIN_URL, JSON.stringify({ user, pwd }), {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }),
-        {
-          loading: "Loading",
-          success: (response) => {
-            const data = response.data.accessToken;
-            setAuth({ user, data });
-            setUserName(user);
-            setPwd("");
-            navigate("/dashboard");
-            return "Logged In";
-          },
-          error: (err) => {
-            if (err?.response?.status === 401) {
-              return "Invalid Credentials";
-            } else if (err?.response?.status === 400) {
-              return "Missing Credentials";
-            } else {
-              return "Server Error";
-            }
-          },
-        }
-      );
-    } catch (err: any) {
-      console.log(err);
-    }
-  };
-
   return (
     <>
       {/* <div className="md:w-8/12 lg:w-5/12 lg:ml-20"> */}

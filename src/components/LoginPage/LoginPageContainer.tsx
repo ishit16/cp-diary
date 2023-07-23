@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import useDevice from "../../hooks/useDevice";
 import { Footer } from "../Shared/Footer";
-import { Form } from "./Form";
+import { LoginForm } from "./LoginForm";
+import { SignupForm } from "./SignupForm";
 
 export const LoginPageContainer = () => {
   const device = useDevice();
+  const [createAccount, setCreateAccount] = useState(false);
+  const handleCreateAccount = () => {
+    setCreateAccount(!createAccount);
+  };
 
   const helperPoints = [
     { index: 1, point: "Analyzing Your CP Profile" },
@@ -58,7 +63,22 @@ export const LoginPageContainer = () => {
             <span className="font-ubuntu text-3xl md:text-6xl font-bold text-[#8CCBEF]">
               Login to CP-Diary
             </span>
-            <Form />
+            {!createAccount ? (
+              <span
+                onClick={handleCreateAccount}
+                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6"
+              >
+                Create new Account
+              </span>
+            ) : (
+              <span
+                onClick={handleCreateAccount}
+                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6"
+              >
+                Login with existing account
+              </span>
+            )}
+            {createAccount ? <SignupForm /> : <LoginForm />}
           </div>
           {!device.isPhone && (
             <div className="flex flex-col pt-20 pr-20">
