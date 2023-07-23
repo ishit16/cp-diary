@@ -30,7 +30,7 @@ export const PendingRequestsContainer = () => {
       }
     };
     fetchPendingRequests();
-  }, [pendingRequests]);
+  }, []);
 
   const handleConfirm = async (name: String) => {
     try {
