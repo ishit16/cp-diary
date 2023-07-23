@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { Diary } from "./pages/Diary";
 import { FriendsPage } from "./pages/Friends";
 import { PendingRequests } from "./pages/PendingRequests";
+import { TestLoginPage } from "./pages/TestLogin";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,7 +18,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/" element={<TestLoginPage />}></Route>
           <Route element={<PersistLogin />}>
             {/* @ts-ignore */}
             <Route element={<ProtectRoutes />}>
