@@ -56,11 +56,11 @@ export const LoginPageContainer = () => {
           </span>
         </div>
         <div className="flex flex-row justify-between">
-          <div className="md:pt-20 flex flex-col pl-24">
-            <span className="text-xl md:text-3xl font-ubuntu font-bold text-gray-400 py-3 md:py-4">
+          <div className="md:pt-12 flex flex-col mx-auto">
+            <span className="text-2xl md:text-3xl font-ubuntu font-bold text-gray-400 py-3 md:py-4">
               DSA Buddy
             </span>
-            <span className="font-ubuntu text-3xl md:text-6xl font-bold text-[#8CCBEF]">
+            <span className="font-ubuntu text-4xl md:text-6xl font-bold text-[#8CCBEF]">
               Login to CP-Diary
             </span>
             {!createAccount ? (
@@ -81,7 +81,7 @@ export const LoginPageContainer = () => {
             {createAccount ? <SignupForm /> : <LoginForm />}
           </div>
           {!device.isPhone && (
-            <div className="flex flex-col pt-20 pr-20">
+            <div className="flex flex-col pt-12 pr-20">
               <span className="text-[#8CCBEF] font-bold font-ubuntu text-6xl">
                 CP-Diary can help you
               </span>
