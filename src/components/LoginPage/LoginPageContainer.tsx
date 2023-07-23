@@ -89,12 +89,11 @@ export const LoginPageContainer = () => {
                 with:
               </span>
               <div className="py-8">
-                <div className="py-4 w-80 break-words text-gray-300 text-4xl font-mono font-bold">
+                <div className="py-4 w-80 break-words text-[#A0E55C] text-4xl font-courierPrime font-bold">
                   {helperPoints[currentPointIndex].point.substring(
                     0,
                     currentLetterIndex + 1
                   )}
-                  {/* Conditionally render the tick icon */}
                 </div>
               </div>
             </div>

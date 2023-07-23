@@ -1,5 +1,5 @@
 import { LoginPageContainer } from "../components/LoginPage/LoginPageContainer";
 
-export const TestLoginPage = () => {
+export const LoginPage = () => {
   return <LoginPageContainer />;
 };
