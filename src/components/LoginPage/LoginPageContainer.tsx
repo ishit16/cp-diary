@@ -66,14 +66,14 @@ export const LoginPageContainer = () => {
             {!createAccount ? (
               <span
                 onClick={handleCreateAccount}
-                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6"
+                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6 cursor-pointer"
               >
                 Create new Account
               </span>
             ) : (
               <span
                 onClick={handleCreateAccount}
-                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6"
+                className="font-ubuntu md:text-xl text-blue-300 py-3 md:py-6 cursor-pointer"
               >
                 Login with existing account
               </span>
