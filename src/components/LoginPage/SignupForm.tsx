@@ -8,6 +8,7 @@ import {
   serverResponseError,
   userNameTaken,
 } from "../toasters/toasts";
+import toast from "react-hot-toast";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -51,19 +52,24 @@ export const SignupForm = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
+      await toast.promise(
+        axios.post(REGISTER_URL, JSON.stringify({ user, pwd }), {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
+        }),
+        {
+          loading: "Creating New Account",
+          error: "Error Occured",
+          success: (response) => {
+            setSuccess(true);
+            accountCreated();
+            setUser("");
+            setPwd("");
+            setMatchPwd("");
+            return "Account Created Successfully!";
+          },
         }
       );
-      setSuccess(true);
-      accountCreated();
-      setUser("");
-      setPwd("");
-      setMatchPwd("");
     } catch (err) {
       //@ts-ignore
       if (!err?.response) {
